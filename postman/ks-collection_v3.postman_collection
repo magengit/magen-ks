@@ -1,0 +1,298 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ks-collection_v3",
+		"_postman_id": "2b8738f0-529c-f796-ab9a-0ca012f8cd26",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Welcome Message",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "https://ks.staging.magen.io/magen/ks/v3/"
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/check/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "https://ks.staging.magen.io/magen/ks/v3/check/"
+			},
+			"response": []
+		},
+		{
+			"name": "Key Service Reset",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/ks/reset/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "https://ks.staging.magen.io/magen/ks/v3/ks/reset"
+			},
+			"response": []
+		},
+		{
+			"name": "Set Logging Level",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/logging_level/<level>/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "https://ks.staging.magen.io/magen/ks/v3/logging_level/<level>/"
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple Key Generation",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"assets\": [\n    {\n      \"asset\": {\n        \"asset_id\": \"1\"\n      }\n    },\n    {\n      \"asset\": {\n        \"asset_id\": \"2\"\n      }\n    }\n  ],\n  \"format\" : \"json\",\n  \"ks_type\" : \"awskms\"\n}"
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/"
+			},
+			"response": []
+		},
+		{
+			"name": "Single Key Generation",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/asset/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"asset\": {\n        \"asset_id\": \"5\"\n      },\n        \"format\" : \"json\",\n      \"ks_type\" : \"local\"\n}"
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/asset/"
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple Keys by asset_ids",
+			"request": {
+				"url": {
+					"raw": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/?asset_id=<ID1>&asset_id=<ID2>",
+					"protocol": "{{base}}",
+					"host": [
+						"{{ks-service}}"
+					],
+					"path": [
+						"{{url-prefix}}",
+						"asset_keys",
+						"assets",
+						""
+					],
+					"query": [
+						{
+							"key": "asset_id",
+							"value": "<ID1>",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "asset_id",
+							"value": "<ID2>",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"assets\": [\n    {\n      \"asset\": {\n        \"asset_id\": \"1\"\n      }\n    },\n    {\n      \"asset\": {\n        \"asset_id\": \"2\"\n      }\n    }\n  ],\n  \"format\" : \"json\",\n  \"ks_type\" : \"awskms\"\n}"
+				},
+				"description": "Retrieve existing keys via asset IDs\n{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/?asset_id=1&asset_id=2"
+			},
+			"response": []
+		},
+		{
+			"name": "Single Key by asset_id",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/asset/<asset_id>/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"assets\": [\n    {\n      \"asset\": {\n        \"asset_id\": \"1\"\n      }\n    },\n    {\n      \"asset\": {\n        \"asset_id\": \"2\"\n      }\n    }\n  ],\n  \"format\" : \"json\",\n  \"ks_type\" : \"awskms\"\n}"
+				},
+				"description": "Retrieve existing keys via asset IDs\n{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/assets/asset/1/"
+			},
+			"response": []
+		},
+		{
+			"name": "Single Key by key_id",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/key/<key_id>/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/key/<key_id>/"
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple Keys by key_ids",
+			"request": {
+				"url": {
+					"raw": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/?key_id=<ID>",
+					"protocol": "{{base}}",
+					"host": [
+						"{{ks-service}}"
+					],
+					"path": [
+						"{{url-prefix}}",
+						"asset_keys",
+						"keys",
+						""
+					],
+					"query": [
+						{
+							"key": "key_id",
+							"value": "<ID>",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/key/<key_id>/"
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple Keys by key_ids",
+			"request": {
+				"url": {
+					"raw": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/?key_id=<ID>",
+					"protocol": "{{base}}",
+					"host": [
+						"{{ks-service}}"
+					],
+					"path": [
+						"{{url-prefix}}",
+						"asset_keys",
+						"keys",
+						""
+					],
+					"query": [
+						{
+							"key": "key_id",
+							"value": "<ID>",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/?key_id=750b0cd060c4b0b91a38505e8acfc160c8628e0e81351c8917bbfe20c2b025cd"
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple Keys state update",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"keys\": [\n    {\n      \"key\": {\n        \"key_id\": \"<key_id>\",\n        \"active\": 0\n      }\n    },\n    {\n      \"key\": {\n        \"key_id\": \"<key_id>\",\n        \"active\": 0\n      }\n    }\n  ],\n  \"format\" : \"json\",\n  \"ks_type\" : \"local\"\n}"
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/"
+			},
+			"response": []
+		},
+		{
+			"name": "Single Keys state update",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/key",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\": {\n    \"key_id\": \"<key_id>\",\n    \"active\": 0\n  },\n  \"format\" : \"json\",\n  \"ks_type\" : \"local\"\n}"
+				},
+				"description": "{{base}}://{{ks-service}}/{{url-prefix}}/asset_keys/keys/"
+			},
+			"response": []
+		}
+	]
+}

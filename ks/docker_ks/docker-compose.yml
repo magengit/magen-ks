@@ -1,0 +1,37 @@
+
+# In Order to Run Docker in interactive mode just change command (un-comment command on line 9 and
+# comment line 18
+# After saving changes in cur dir execute command:
+# docker-compose run --rm magen_ks
+
+# Since docker-compose version 2 'links' key-word is obsolete and 'networks' is preferable approach
+# Although 'links' and 'depends_on' make sure to start linked containers before the main one
+# docker-compose forces links to be launched and returns an error if linked container is already launched
+
+version: "2"
+services:
+  magen_ks:
+    build: .
+    image: magen_ks:v1.3
+    container_name: magen_ks
+    command: bash -c "python3 /opt/server/ks/ks_server/ks_server.py --console-log-level 'info' --log-dir 'key_server_logs' 2>&1 >> server.log"
+#    command: /bin/bash
+    ports:
+      - "5010:5010"
+    volumes:
+      - ~/magen_data/ks/:/opt/data/
+      - ../..:/opt/server
+    stdin_open: true
+    tty: true
+    networks:
+      - default
+  magen_mongo:
+    image: mongo:latest
+    container_name: magen_mongo
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: magen_net

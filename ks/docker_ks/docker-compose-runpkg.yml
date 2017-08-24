@@ -1,0 +1,29 @@
+# run docker image using installed wheel pkg, not source: mount /opt/svc for cfg/logs
+# ("runpkg" vs "rundev")
+
+version: "2"
+services:
+  magen_ks:
+    build: .
+    image: magen_ks:v1.3
+    container_name: magen_ks
+    command: bash -c "ks_server.py --data-dir /opt/svc/data --console-log-level 'info' --log-dir 'key_server_logs' 2>&1 >> ks_server.log"
+    ports:
+      - "443:5010"
+      - "5010:5010"
+    volumes:
+      - ~/magen_data/ks/:/opt/svc/
+    stdin_open: true
+    tty: true
+    networks:
+      - default
+  magen_mongo:
+    image: mongo:latest
+    container_name: magen_mongo
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: magen_net

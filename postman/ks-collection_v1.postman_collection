@@ -1,0 +1,55 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ks-collection_v1",
+		"_postman_id": "36e02e4d-bcdc-849a-7a65-f66933afb53f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Welcome Message",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "https://ks.staging.magen.io/"
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/check/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "https://ks.staging.magen.io/check/"
+			},
+			"response": []
+		},
+		{
+			"name": "Key Service Reset",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/ks/reset",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "https://ks.staging.magen.io/ks/reset"
+			},
+			"response": []
+		},
+		{
+			"name": "Set Logging Level",
+			"request": {
+				"url": "{{base}}://{{ks-service}}/logging_level/<level>/",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": "https://ks.staging.magen.io/logging_level/<level>/"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,17 @@
+version: "2"
+services:
+  ks_test:
+    image: magen_ks:v1.3
+    container_name: magen_ks_test
+    command: bash -c "make test_travis"
+    ports:
+      - "5010:5010"
+    volumes:
+      - ../..:/opt/server
+    links:
+      - magen_mongo:magen_mongo
+    depends_on:
+      - magen_mongo
+  magen_mongo:
+    image: mongo:latest
+    container_name: magen_mongo

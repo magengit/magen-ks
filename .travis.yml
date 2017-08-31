@@ -49,7 +49,7 @@ matrix:
   fast_finish: true
 
 install:
-- cd ingestion
+- cd ks
 - if [ "$TO_BUILD" = "NATIVE" ]; then make all; fi
 - if [ "$TO_BUILD" = "DOCKER" ]; then make package && make build_docker; fi
 

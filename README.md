@@ -70,5 +70,5 @@ To compile docs execute:
     
 or run:
 
-```make doc``` in the [```ingestion```](ks) directory
+```make doc``` in the [```ks```](ks) directory
 

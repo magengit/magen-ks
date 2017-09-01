@@ -1,5 +1,7 @@
 # Magen Key Service
 
+[![Build Status](https://travis-ci.org/magengit/magen-ks.svg?branch=master)](https://travis-ci.org/magengit/magen-ks)
+
 Magen Key Service is a microservice responsible for creating and managing secure encrypted keys for digital data in the system. It exposes REST API
 for managing encrypted keys.
 

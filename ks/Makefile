@@ -1,19 +1,21 @@
-WHEEL :=magen_key_service-1.3a1-py3-none-any.whl
-PACKAGE_NAME=magen_key_service
 PACKAGE_TAG=ks
+PACKAGE_NAME=magen_key_service
+WHEEL :=magen_key_service-1.3a1-py3-none-any.whl
 DOCKER_SRC_TAG=magen_ks:v1.3
 DOCKER_IMAGE=magen-ks
+DOCKER_DIR=docker_$(PACKAGE_TAG)
+SERVER_NAME=ks_server.py
+
+SERVER_PID=
+COVERAGE=coverage run -m
+
 PYTHON=python3
 MAKE=make
 PYTEST=pytest
-COVERAGE=coverage run -m
-SERVER_PID=
-OS :=$(shell uname)
-PIP :=pip3
-SERVER_NAME=ks_server.py
+OS := $(shell uname)
+PIP := pip3
 
 MAGEN_HELPER=../lib/magen_helper
-
 
 include $(MAGEN_HELPER)/make_common/docker_common.mk
 include $(MAGEN_HELPER)/make_common/package_common.mk
@@ -65,6 +67,8 @@ pre_test: common_pre_test
 
 coverage_report: common_coverage_report
 
+run: common_run
+
 SPHINX_API_KEY_SERVER_OMITS=ks_server/magen_env.py
 SPHINX_API_KEY_APIS_OMITS=
 SPHINX_DIR=docs
@@ -74,7 +78,5 @@ doc_api:
 	$(SPHINX_APIDOC) -o $(SPHINX_DIR) --force ks_api $(SPHINX_API_KEY_APIS_OMITS)
 
 doc: doc_api common_doc
-
-run: common_run
 
 .PHONY:  pre_test coverage_report all build_docker

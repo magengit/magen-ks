@@ -1,13 +1,10 @@
 doc-warnings: false
-test-warnings: false
+test-warnings: true
 strictness: veryhigh
 max-line-length: 120
 uses:
   - flask
 autodetect: true
-requirements:
-  - deps/core.txt
-  - deps/test.txt
 ignore-paths:
   - postman
   - lib

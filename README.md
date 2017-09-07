@@ -1,7 +1,7 @@
 # Magen Key Service
 
 [![Build Status](https://travis-ci.org/magengit/magen-ks.svg?branch=master)](https://travis-ci.org/magengit/magen-ks)
-[![Coverage Status](https://coveralls.io/repos/github/magengit/magen-ks/badge.svg?branch=master)](https://coveralls.io/github/magengit/magen-ks?branch=master)
+[![codecov](https://codecov.io/gh/magengit/magen-ks/branch/master/graph/badge.svg)](https://codecov.io/gh/magengit/magen-ks)
 [![Code Health](https://landscape.io/github/magengit/magen-ks/master/landscape.svg?style=flat)](https://landscape.io/github/magengit/magen-ks/master)
 
 

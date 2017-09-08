@@ -23,7 +23,7 @@ def jot_key(key_info: dict):
             cur = item['key']
             for each in cur.keys():
                 cur[each] = cur[each].decode("utf-8") if isinstance(cur[each], bytes) else cur[each]
-    except KeyError or TypeError:
+    except (KeyError, TypeError):
         pass
     encoded = jwt.encode(key_info, 'secret', algorithm='HS256')
     return encoded

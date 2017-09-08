@@ -14,10 +14,10 @@ db_name = 'key_db'
 
 class MongoSettings(metaclass=Singleton):
     def __init__(self, mip=None, mport=None):
-        if not mip and not self.mip or not mport and not self.mport:
+        self.mip = mip
+        self.mport = mport
+        if not self.mip or not self.mport:
             raise ValueError("Can't instantiate MongoClient without host and port")
-        self.mip = mip if mip else self.mip
-        self.mport = mport if mport else self.mport
         self.client = MongoClient(mip, mport)
         self.db = self.client[db_name]
         self.collection = self.db[collection_name]

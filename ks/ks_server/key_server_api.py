@@ -104,7 +104,7 @@ def generate_new_key_v3():
                  request, request.json)
 
     success, created_key = key_service_api.generate_new_asset_key(request.json)
-    logger.debug("key info is ", created_key)
+    logger.debug("key info is %s", created_key)
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "create new key", created_key) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "create new key", created_key)
@@ -197,7 +197,7 @@ def delete_asset_keys_v3():
 
     success, deleted_keys = key_service_api.delete_asset_keys(keys_del_dict)
 
-    logger.debug("key info is ", deleted_keys)
+    logger.debug("key info is %s", deleted_keys)
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "delete keys", deleted_keys) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "delete keys", deleted_keys)
@@ -244,7 +244,7 @@ def change_state_keys_v3():
     logger.debug("change state of keys %s", request.json)
 
     success, updated_keys = key_service_api.update_asset_keys(request.json)
-    logger.debug("key info is ", updated_keys)
+    logger.debug("key info is %s", updated_keys)
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "updated keys", updated_keys) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "updated keys", updated_keys)
@@ -264,7 +264,7 @@ def change_state_key_v3():
     logger.debug("change state for multiple keys")
     logger.debug("change state of keys %s", request.json)
     success, updated_key = key_service_api.update_asset_key(request.json)
-    logger.debug("key info is ", updated_key)
+    logger.debug("key info is %s", updated_key)
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "updated key", updated_key) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "updated key", updated_key)

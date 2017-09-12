@@ -14,7 +14,7 @@ KS_CREATE_MULTI_KEY_JSON = '''{
     }
   ],
   "format" : "json",
-  "ks_type" : "awskms"
+  "ks_type" : "local"
 }'''
 
 KS_CREATE_MULTI_KEY_RESP_JSON = {
@@ -27,7 +27,7 @@ KS_CREATE_MULTI_KEY_RESP_JSON = {
                     "iv": "dynamic iv",
                     "key": "dynamic key",
                     "key_id": "dynamic key_id",
-                    "key_server": "awskms",
+                    "key_server": "local",
                     "state": "active",
                     "use": "asset encryption"
                 }
@@ -39,7 +39,7 @@ KS_CREATE_MULTI_KEY_RESP_JSON = {
                     "iv": "dynamic iv",
                     "key": "dynamic key",
                     "key_id": "dynamic key_id",
-                    "key_server": "awskms",
+                    "key_server": "local",
                     "state": "active",
                     "use": "asset encryption"
                 }
@@ -77,10 +77,10 @@ KS_GET_MULTI_KEY_JSON_RESP = {
     'response':
         {'keys':
              [{'key': {'key_id': 'dynamic key_id', 'algorithm': 'AES256',
-                       'key_server': 'awskms', 'asset_id': '100', 'key': 'dynamic_key',
+                       'key_server': 'local', 'asset_id': '100', 'key': 'dynamic_key',
                        'ttl': 86400, 'iv': "dynamic iv", 'state': 'active'}}, {
                   'key': {'key_id': 'dynamic key_id', 'algorithm': 'AES256',
-                          'key_server': 'awskms', 'asset_id': '200',
+                          'key_server': 'local', 'asset_id': '200',
                           'key': 'dynamic iv', 'ttl': 86400,
                           'iv': "dynamic iv", 'state': 'active'}}]}, 'status': 200,
     'title': 'requested keying material'
@@ -187,7 +187,7 @@ KS_GET_MULTI_KEY_INFO_JSON_RESP = {
         "asset_id": "1",
         "iv": "dyanmic iv",
         "key_id": "CHANGEME",
-        "key_server": "awskms",
+        "key_server": "local",
         "state": "active",
         "use": "asset encryption"
       },
@@ -196,7 +196,7 @@ KS_GET_MULTI_KEY_INFO_JSON_RESP = {
         "asset_id": "2",
         "iv": "dynamic iv'",
         "key_id": "ChANGEME",
-        "key_server": "awskms",
+        "key_server": "local",
         "state": "active",
         "use": "asset encryption"
       }
@@ -278,7 +278,7 @@ GET_TEST_SETUP_MULTI_JSON = '''{
     }
   ],
   "format" : "json",
-  "ks_type" : "awskms"
+  "ks_type" : "local"
 }'''
 
 GET_TEST_SETUP_SINGLE_JSON = '''{
@@ -303,7 +303,7 @@ UPDATE_MULTI_KEY_SETUP = '''{
     }
   ],
   "format" : "json",
-  "ks_type" : "awskms"
+  "ks_type" : "local"
 }'''
 
 UPDATE_SINGLE_KEY_SETUP = '''{
@@ -337,7 +337,7 @@ KS_GET_MULTI_KEY_SETUP = '''{
     }
   ],
   "format" : "json",
-  "ks_type" : "awskms"
+  "ks_type" : "local"
 }'''
 
 
@@ -356,7 +356,7 @@ KS_DEL_MULTI_KEY_SETUP = '''{
     }
   ],
   "format" : "json",
-  "ks_type" : "awskms"
+  "ks_type" : "local"
 }'''
 
 

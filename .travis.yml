@@ -49,7 +49,7 @@ before_install:
   # - sudo chown -R mongodb:mongodb /var/lib/mongodb
   # mongo: allow connections to other interfaces besides loopback
   - sudo sed -i.bak '/bindIp/d' /etc/mongod.conf
-  - sudo service mongod start
+  # - sudo service mongod start
 
   # docker-compose
   - sudo curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)"

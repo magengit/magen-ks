@@ -91,7 +91,7 @@ def generate_new_asset_keys(assets: dict):
     success = False
 
     key_format = _validate_key_format(jwt_format, assets.get('format', ''))
-    logger.debug("key format: {}".format(key_format))
+    logger.debug("key format: %s",key_format)
 
     for asset in assets.get('assets', []):
         success, new_key = _create_new_key(assets.get('ks_type', ''), asset['asset']['asset_id'])
@@ -150,7 +150,6 @@ def retrieve_asset_keys(assets: dict):
     """
 
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("inside retrieve_keys method")
 
     collection = mongo_settings.MongoSettings().collection
 
@@ -182,7 +181,6 @@ def retrieve_asset_key(asset: dict):
     :rtype: tuple
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("inside retrieve_key method")
     logger.debug("retrieving key for asset ID %s", asset['asset_id'])
 
     collection = mongo_settings.MongoSettings().collection
@@ -215,7 +213,6 @@ def delete_asset_keys(keys_to_del: dict):
     """
 
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("delete keyS method")
 
     deleted_keys = list()
     success = False
@@ -241,7 +238,7 @@ def delete_asset_key(key_to_del: dict):
     :rtype: tuple
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("key to be deleted %s", key_to_del)
+    logger.debug("Key to be deleted %s", key_to_del)
 
     key_format = _validate_key_format(jwt_format, key_to_del.get('format', ''))
 
@@ -262,7 +259,6 @@ def update_asset_keys(keys_to_update: dict):
     """
 
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("updating multiple keys")
 
     multi_key_dict = {'keys': []}
     key_format = _validate_key_format(jwt_format, keys_to_update.get('format', ''))
@@ -289,12 +285,11 @@ def update_asset_key(key_to_update: dict):
     """
 
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("inside update key method")
 
     key_format = _validate_key_format(jwt_format, key_to_update.get('format', ''))
     success, updated_key = KeyServerBase.state_change(key_to_update['key']['key_id'], key_to_update['key']['active'])
 
-    logger.debug("updated key info: {}".format(str(updated_key)))
+    logger.debug("updated key info: %s", str(updated_key))
 
     return (success, keywrapper.jot_key(updated_key)) if key_format else (success, updated_key)
 
@@ -333,7 +328,6 @@ def get_asset_keys_info(keys: dict):
     """
 
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("multiple asset ids")
 
     keys_info = list()
     key_format = _validate_key_format(jwt_format, keys.get('format', ''))
@@ -364,7 +358,7 @@ def get_asset_key_info(key: dict):
     ks_type = _check_key_type(key['key']['key_id'])
     success, key_details = _get_key(ks_type, key['key']['key_id'])
 
-    logger.debug("Key details: {}".format(key_details))
+    logger.debug("Key details: %s", key_details)
 
     return (success, keywrapper.jot_key(key_details)) if key_format else (success, key_details)
 

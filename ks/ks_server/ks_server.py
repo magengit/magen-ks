@@ -6,12 +6,12 @@
 
 import argparse
 import logging
-import socket
 import sys
 
 from magen_rest_apis.magen_app import MagenApp
 # If this is being run from workspace (as main module),
 # import dev/magen_env.py to add workspace package directories.
+
 src_ver = MagenApp.app_source_version(__name__)
 if src_ver:
     # noinspection PyUnresolvedReferences
@@ -79,7 +79,7 @@ def main(args):
                         help='Run server in test mode. Used for unit tests'
                              'Default is to run in production mode)')
 
-    args, unknown = parser.parse_known_args(args)
+    args, _ = parser.parse_known_args(args)
 
     # Set Up MongoDB Connection
     mip, mport = args.mongo_ip_port.split(":") if args.mongo_ip_port else mongo_host_port()

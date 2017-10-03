@@ -130,7 +130,8 @@ class KsTest(unittest.TestCase):
         test_data['response'] = decode_jwt(test_data['response']) \
             if isinstance(test_data['response'], str) \
             else test_data['response']
-        self.compare_dicts(test_data, compare_data) if compare_data else None
+        if compare_data:
+            self.compare_dicts(test_data, compare_data)
         return test_data
 
     def post_helper(self, url_str, test_data, compare_data=None):

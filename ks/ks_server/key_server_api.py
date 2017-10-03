@@ -67,12 +67,10 @@ def generate_new_keys_v3():
     :rtype: json 
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug('Generating multiple keys')
-    logger.debug('magen/ks/v3/asset_keys/assets is {}'.format(request))
 
     success, created_keys = key_service_api.generate_new_asset_keys(request.json)
 
-    logger.debug('key info is {}'.format(created_keys))
+    logger.debug('key info is %s', created_keys)
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "create new keys", created_keys) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "create new keys", created_keys)
@@ -99,9 +97,6 @@ def generate_new_key_v3():
     :rtype: json 
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("Generating single key")
-    logger.debug("magen/ks/v3/asset_keys/assets/asset is %s (json:%s)",
-                 request, request.json)
 
     success, created_key = key_service_api.generate_new_asset_key(request.json)
     logger.debug("key info is %s", created_key)
@@ -123,8 +118,6 @@ def get_asset_keys_v3():
     :rtype: json 
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug('Returning multiple keys')
-    logger.debug('/magen/ks/v3/asset_keys/assets/ is {}'.format(request))
 
     asset_id_list = list()
 
@@ -134,7 +127,7 @@ def get_asset_keys_v3():
 
     asset_id_dict['format'] = request.args.get('format', default_key_format)
 
-    logger.debug('list of asset ids {}'.format(asset_id_dict))
+    logger.debug('list of asset ids %s', asset_id_dict)
 
     success, retrieved_keys = key_service_api.retrieve_asset_keys(asset_id_dict)
 
@@ -158,14 +151,11 @@ def get_asset_key_v3(asset_id):
     :rtype: json 
     """
 
-    logger = logging.getLogger(LogDefaults.default_log_name)
-
     asset_id_dict = dict(
         asset_id=asset_id,
         format=request.args.get('format', default_key_format)
     )
     success, retrieved_key = key_service_api.retrieve_asset_key(asset_id_dict)
-    logger.debug("Returning single key")
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "key details", retrieved_key) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "key details", retrieved_key)
@@ -183,7 +173,6 @@ def delete_asset_keys_v3():
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
     key_id_list = []
-    logger.debug("DELETE multiple keys")
 
     for kid in request.args.getlist('key_id'):
         key_id_list.append(dict(key=dict(
@@ -218,7 +207,6 @@ def delete_asset_key_v3(key_id):
     """
 
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("DELETE single key")
     key_to_del = dict(
         key=dict(key_id=key_id),
         format=request.args.get('format', default_key_format)
@@ -240,8 +228,6 @@ def change_state_keys_v3():
     :rtype: json
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("change state for multiple keys")
-    logger.debug("change state of keys %s", request.json)
 
     success, updated_keys = key_service_api.update_asset_keys(request.json)
     logger.debug("key info is %s", updated_keys)
@@ -260,11 +246,7 @@ def change_state_key_v3():
     :return: http response with key info
     :rtype: json
     """
-    logger = logging.getLogger(LogDefaults.default_log_name)
-    logger.debug("change state for multiple keys")
-    logger.debug("change state of keys %s", request.json)
     success, updated_key = key_service_api.update_asset_key(request.json)
-    logger.debug("key info is %s", updated_key)
 
     http_response = RestServerApis.respond(HTTPStatus.OK, "updated key", updated_key) if success \
         else RestServerApis.respond(HTTPStatus.BAD_REQUEST, "updated key", updated_key)
@@ -282,7 +264,6 @@ def return_keys_details_v3():
     """
     logger = logging.getLogger(LogDefaults.default_log_name)
     key_id_list = []
-    logger.debug("Returning info for keys")
 
     for kid in request.args.getlist('key_id'):
         key_id_list.append(dict(key_id=kid))
@@ -351,9 +332,6 @@ def set_logging_level(level):
     :rtype: json
     """
     try:
-        logger = logging.getLogger(LogDefaults.default_log_name)
-        logger.debug("set_logging_level: %s", level)
-
         do_set_logging_level(level)
 
         return RestServerApis.respond(
@@ -365,10 +343,10 @@ def set_logging_level(level):
             )
         )
     
-    except Exception as e:
+    except ValueError as e:
         return RestServerApis.respond(
             HTTPStatus.INTERNAL_SERVER_ERROR, "set_logging_level", {
-                "success": False, "cause": HTTPStatus.INTERNAL_SERVER_ERROR.phrase})
+                "success": False, "cause": e.args[0]})
 
 def do_set_logging_level(level):
     logger = logging.getLogger(LogDefaults.default_log_name)

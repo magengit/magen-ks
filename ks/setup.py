@@ -11,7 +11,7 @@ if pip_version < 901:
 
 setup(
     name='magen_key_service',
-    version='1.3a1',
+    version='1.5a1',
     install_requires=[
         'aniso8601>=1.2.1',
         'boto3>=1.4.4',

@@ -35,6 +35,7 @@ class KsLocal(KeyServerBase):
             key_dict['asset_id'] = aid
             return False, key_dict
         else:
+            # TODO this seems all wrong. Bytes can not be decoded with utf-8 consistently
             key = os.urandom(32)
             key_dict['key'] = (base64.b64encode(key).decode('utf-8'))
             key_id = hashlib.sha256(key).hexdigest()

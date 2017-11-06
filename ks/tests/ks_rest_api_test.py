@@ -1,4 +1,4 @@
-#! /usr/bin/python3.5
+#! /usr/bin/python3.6
 
 import ks.ks_server.ks_server as ks_server
 import json

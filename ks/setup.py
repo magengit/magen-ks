@@ -2,8 +2,8 @@ from setuptools import setup
 import sys
 import pip
 
-if sys.version_info < (3, 5, 2):
-    sys.exit("Sorry, you need Python 3.5.2+")
+if sys.version_info < (3, 6, 0):
+    sys.exit("Sorry, you need Python 3.6.0+")
 
 pip_version = int(pip.__version__.replace(".", ""))
 if pip_version < 901:
@@ -11,7 +11,7 @@ if pip_version < 901:
 
 setup(
     name='magen_key_service',
-    version='1.7a1',
+    version='1.8a1',
     install_requires=[
         'aniso8601>=1.2.1',
         'boto3>=1.4.4',
@@ -57,6 +57,6 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 )

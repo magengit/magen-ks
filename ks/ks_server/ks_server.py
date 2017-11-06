@@ -38,7 +38,7 @@ logger = logging.getLogger(LogDefaults.default_log_name)
 def main(args):
     #: setup parser -----------------------------------------------------------
     parser = argparse.ArgumentParser(description="Key Service",
-                                     usage=("\npython3.5 ks_server.py "
+                                     usage=("\npython3.6 ks_server.py "
                                             "--database "
                                             "--mongo-ip-port "
                                             "--log-dir"

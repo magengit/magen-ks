@@ -18,7 +18,7 @@ RUN rm -rf tests/__pycache__/
 
 # For dev:
 WORKDIR /tmp
-COPY magen_key_service-1.7a1-py3-none-any.whl /tmp
-RUN pip3 install magen_key_service-1.7a1-py3-none-any.whl
+COPY magen_key_service-1.9a1-py3-none-any.whl /tmp
+RUN pip3 install magen_key_service-1.9a1-py3-none-any.whl
 
 WORKDIR /opt/server/ks

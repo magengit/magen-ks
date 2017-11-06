@@ -11,7 +11,8 @@ import json
 import unittest
 
 from magen_rest_apis.rest_client_apis import RestClientApis
-from magen_test_utils_apis.test_magen_object_apis import TestMagenObjectApis
+# from magen_test_utils_apis.test_magen_object_apis import TestMagenObjectApis
+from magen_utils_apis.compare_utils import compare_dicts
 from magen_utils_apis.domain_resolver import mongo_host_port
 
 __author__ = "paulq@cisco.com"
@@ -120,8 +121,8 @@ class KsTest(unittest.TestCase):
         print("CLEAN UP AFTER TEST")
         type(self).mongo.drop_db()
 
-    def compare_dicts(self, test_data: dict, expected_data: dict):
-        self.assertTrue(TestMagenObjectApis.compare_json(expected_data, test_data)[0])
+    # def compare_dicts(self, test_data: dict, expected_data: dict):
+    #     self.assertTrue(TestMagenObjectApis.compare_json(expected_data, test_data)[0])
 
     def check_helper(self, test_response_obj, compare_data):
         self.assertEquals(test_response_obj.status_code, HTTPStatus.OK)
@@ -131,7 +132,7 @@ class KsTest(unittest.TestCase):
             if isinstance(test_data['response'], str) \
             else test_data['response']
         if compare_data:
-            self.compare_dicts(test_data, compare_data)
+            compare_dicts(test_data, compare_data)
         return test_data
 
     def post_helper(self, url_str, test_data, compare_data=None):

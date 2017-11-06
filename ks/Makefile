@@ -1,6 +1,6 @@
 PACKAGE_TAG=ks
 PACKAGE_NAME=magen_key_service
-WHEEL :=magen_key_service-1.6a1-py3-none-any.whl
+WHEEL :=magen_key_service-1.7a1-py3-none-any.whl
 DOCKER_SRC_TAG=magen_ks:v1.3
 DOCKER_IMAGE=magen-ks
 DOCKER_DIR=docker_$(PACKAGE_TAG)

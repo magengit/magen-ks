@@ -1,6 +1,10 @@
 from setuptools import setup
 import sys
+import os
 import pip
+
+with open(os.path.join(os.path.dirname(__file__), '__init__.py')) as version_file:
+    exec(version_file.read())
 
 if sys.version_info < (3, 6, 0):
     sys.exit("Sorry, you need Python 3.6.0+")
@@ -11,7 +15,7 @@ if pip_version < 901:
 
 setup(
     name='magen_key_service',
-    version='1.9a1',
+    version=__version__,
     install_requires=[
         'aniso8601>=1.2.1',
         'boto3>=1.4.4',

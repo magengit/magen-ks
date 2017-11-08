@@ -1,6 +1,7 @@
 PACKAGE_TAG=ks
 PACKAGE_NAME=magen_key_service
-WHEEL :=magen_key_service-1.9a1-py3-none-any.whl
+wheel_version := $(shell python3 -c 'import __init__ as version; print(version.__version__)')
+WHEEL :=$(PACKAGE_NAME)-$(wheel_version)-py3-none-any.whl
 DOCKER_SRC_TAG=magen_ks:v1.3
 DOCKER_IMAGE=magen-ks
 DOCKER_DIR=docker_$(PACKAGE_TAG)

@@ -10,7 +10,16 @@ for managing encrypted keys.
 
 Supported key formats: JSON, JWT
 
-Current version: ```1.3a1```
+Current version: ```1.9a2```
+
+## Git clone
+
+All of Magen services depend on an operations git submodule [**magen_helper**](https://github.com/magengit/magen-helper).
+When cloning this repo, make sure to provide ```--recursive``` flag or after the clone execute a command to update ```magen-helpers``` git submodule:
+
+```
+git submodule update --init --recursive
+```
 
 For This Service there are available ```make``` commands. Makefile is located under [**ks/**](ks)
 
@@ -68,12 +77,11 @@ default:
 
 ## Sphinx Documentation SetUp
 
-There is a configured Sphinx API docs for the service. 
-To compile docs execute: 
+There is a configured Sphinx API docs for the service.
+To compile docs execute:
 
 ```make html``` in [```docs```](ks/docs) directory
-    
+
 or run:
 
 ```make doc``` in the [```ks```](ks) directory
-

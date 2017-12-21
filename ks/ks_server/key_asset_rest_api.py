@@ -1,7 +1,11 @@
+import json
 from http import HTTPStatus
+
+import requests
 from flask import Blueprint, request
 import logging
 
+from magen_rest_apis.rest_client_apis import RestClientApis
 from magen_rest_apis.rest_server_apis import RestServerApis
 from ks.ks_api.key_service_api import key_service_api
 from magen_logger.logger_config import LogDefaults
@@ -307,14 +311,34 @@ def retrun_key_details_v3(key_id):
 
 
 # ALL OLDER URIs deprecated
-@key_service_bp_v3.route('/ks/reset/', methods=['GET'])
-@key_service_bp.route('/ks/reset/', methods=['GET'])
+@key_service_bp_v3.route('/reset/', methods=['POST'])
+@key_service_bp.route('/ks/reset/', methods=['POST'])
 def reset_ks():
     """
     USED FOR TEST ONLY: clean up all records and start again
 
     :rtype: str
     """
+    http_api_user = request.form['user']
+    orig_path_list = request.path.split("/")
+    # Remove empty entries from list that are a result of the split
+    http_api_path_list = [x for x in orig_path_list if x]
+    # We need to add the user to the back of the list. See OPA Policy.
+    http_api_path_list.append(http_api_user)
+    input_dict = {  # create input to hand to OPA
+        "input": {
+            "user": http_api_user,
+            "path": http_api_path_list,  # turn "/finance/salary" into ["finance", "salary"]
+            "method": request.method  # HTTP verb, e.g. GET, POST, PUT, ...
+        }
+    }
+    rsp = RestClientApis.http_post_and_check_success("http://127.0.0.1:8181/v1/data/httpapi/authz", json.dumps(input_dict), location=False)
+    #rsp = requests.post("http://127.0.0.1:8181/v1/data/httpapi/authz", data=json.dumps(input_dict))
+    rsp_json = rsp.json()
+    if rsp_json["allow"]:
+        pass
+    else:
+        pass
     result = key_service_api.reset()
     return result
 

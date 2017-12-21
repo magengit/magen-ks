@@ -4,7 +4,7 @@ import jwt
 from flask import Flask
 from magen_rest_apis.server_urls import ServerUrls
 
-from ks.ks_server.key_server_api import key_service_bp, key_service_bp_v3
+from ks.ks_server.key_asset_rest_api import key_service_bp, key_service_bp_v3
 
 from ks.settings import mongo_settings
 import json

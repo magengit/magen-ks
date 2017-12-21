@@ -21,7 +21,7 @@ from magen_utils_apis.domain_resolver import mongo_host_port, LOCAL_MONGO_LOCATO
 
 from ks.settings import mongo_settings
 from ks.ks_server.ks_app import MagenKeyServerApp
-from ks.ks_server.key_server_api import key_service_bp, key_service_bp_v3, do_set_logging_level
+from ks.ks_server.key_asset_rest_api import key_service_bp, key_service_bp_v3, do_set_logging_level
 
 __author__ = "paulq@cisco.com"
 __maintainer__ = "Alena Lifar"

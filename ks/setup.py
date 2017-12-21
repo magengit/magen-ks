@@ -26,7 +26,7 @@ setup(
         'pymongo>=3.4.0',
         'pytest>=3.1.3',
         'magen_utils==1.2a2',
-        'magen_rest_service==1.2a2'
+        'magen_rest_service==1.3a0'
       ],
     scripts=['ks_server/ks_server.py'],
     package_dir={'': '..'},

@@ -324,7 +324,6 @@ def reset_ks():
     # Remove empty entries from list that are a result of the split
     http_api_path_list = [x for x in orig_path_list if x]
     # We need to add the user to the back of the list. See OPA Policy.
-    http_api_path_list.append(http_api_user)
     input_dict = {  # create input to hand to OPA
         "input": {
             "user": http_api_user,
@@ -333,14 +332,13 @@ def reset_ks():
         }
     }
     rsp = RestClientApis.http_post_and_check_success("http://127.0.0.1:8181/v1/data/httpapi/authz", json.dumps(input_dict), location=False)
-    #rsp = requests.post("http://127.0.0.1:8181/v1/data/httpapi/authz", data=json.dumps(input_dict))
-    rsp_json = rsp.json()
-    if rsp_json["allow"]:
-        pass
+    # rsp = requests.post("http://127.0.0.1:8181/v1/data/httpapi/authz", data=json.dumps(input_dict))
+    rsp_json = rsp.json_body
+    if rsp_json["result"]["allow"]:
+        key_service_api.reset()
+        return RestServerApis.respond(HTTPStatus.OK, "Reset")
     else:
-        pass
-    result = key_service_api.reset()
-    return result
+        return RestServerApis.respond(HTTPStatus.FORBIDDEN, "Reset")
 
 
 @key_service_bp_v3.route('/logging_level/<level>/', methods=["POST", "PUT"])

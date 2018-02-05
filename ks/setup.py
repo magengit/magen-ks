@@ -38,9 +38,9 @@ setup(
     },
     test_suite='tests',
     url='',
-    license='Proprietary License',
-    author='Paul Quinn',
-    author_email='paulq@cisco.com',
+    license='Apache Software License',
+    author='Reinaldo penno',
+    author_email='rapenno@gmail.com',
     description='Magen Key Service Package',
     classifiers=[
         # How mature is this project? Common values are
@@ -57,7 +57,7 @@ setup(
         'Topic :: Security',
 
         # Pick your license as you wish (should match "license" above)
-        'License :: Other/Proprietary License',
+        'License :: Apache Software License',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.

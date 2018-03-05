@@ -1,3 +1,3 @@
 # coding=utf-8
 """Init for Magen Key Service"""
-__version__ = '1.9a3'
+__version__ = '1.9a4'

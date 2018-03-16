@@ -1,5 +1,6 @@
+import json
 from http import HTTPStatus
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 import logging
 
 from magen_rest_apis.rest_server_apis import RestServerApis
@@ -33,7 +34,7 @@ def ks_welcome():
 @key_service_bp.route('/check/', methods=["GET"])
 def health_check():
     """health check used by SLB"""
-    return "Check success"
+    return jsonify("Check success"), HTTPStatus.OK
 
 
 # V3 APIS

@@ -37,7 +37,7 @@ setup(
         '': ['*.txt', '*.rst']
     },
     test_suite='tests',
-    url='',
+    url='https://magengit.github.io/',
     license='Apache Software License',
     author='Reinaldo penno',
     author_email='rapenno@gmail.com',

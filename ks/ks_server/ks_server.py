@@ -39,7 +39,6 @@ def main(args):
     #: setup parser -----------------------------------------------------------
     parser = argparse.ArgumentParser(description="Key Service",
                                      usage=("\npython3.6 ks_server.py "
-                                            "--database "
                                             "--mongo-ip-port "
                                             "--log-dir"
                                             "--console-log-level"
@@ -48,9 +47,6 @@ def main(args):
                                             "--unittest"
                                             "\n\nnote:\n"
                                             "root privileges are required "))
-
-    parser.add_argument('--database', choices=['Mongo'], default="Mongo",
-                        help='Database type such as Mongo or Cassandra. Default is Mongo')
 
     parser.add_argument('--data-dir',
                         help='Set directory for data files',
